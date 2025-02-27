@@ -1,0 +1,6 @@
+[user]
+name = "Tom Houlé"
+email = "tom@tomhoule.com"
+
+[git]
+push-bookmark-prefix = "tomhoule-"
