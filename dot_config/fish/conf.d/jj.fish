@@ -1,1 +1,3 @@
-jj util completion fish | source
+if command -q jj
+    jj util completion fish | source
+end
