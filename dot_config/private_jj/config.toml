@@ -2,8 +2,8 @@
 name = "Tom Houlé"
 email = "tom@tomhoule.com"
 
-[git]
-push-bookmark-prefix = "tomhoule-"
+[templates]
+git-push-bookmark = '"tomhoule-" ++ change_id.short()'
 
 [aliases]
 
@@ -12,4 +12,3 @@ push-bookmark-prefix = "tomhoule-"
 #
 # From https://gist.github.com/thoughtpolice/8f2fd36ae17cd11b8e7bd93a70e31ad6#file-jjconfig-toml
 tug = ["bookmark", "move", "--from", "heads(::@- & bookmarks())", "--to", "@-"]
-
