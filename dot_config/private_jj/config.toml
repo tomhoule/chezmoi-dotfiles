@@ -3,7 +3,7 @@ name = "Tom Houlé"
 email = "tom@tomhoule.com"
 
 [templates]
-git-push-bookmark = '"tomhoule-" ++ change_id.short()'
+git_push_bookmark = '"tomhoule-" ++ change_id.short()'
 
 [aliases]
 
@@ -12,3 +12,9 @@ git-push-bookmark = '"tomhoule-" ++ change_id.short()'
 #
 # From https://gist.github.com/thoughtpolice/8f2fd36ae17cd11b8e7bd93a70e31ad6#file-jjconfig-toml
 tug = ["bookmark", "move", "--from", "heads(::@- & bookmarks())", "--to", "@-"]
+
+[merge-tools.mergiraf]
+program = "mergiraf"
+merge-args = ["merge", "$base", "$left", "$right", "-o", "$output", "--fast"]
+merge-conflict-exit-codes = [1]
+conflict-marker-style = "git"
