@@ -1,2 +1,6 @@
+# Reference docs: https://www.chezmoi.io/reference/special-files/chezmoiignore/
+
 # Do NOT add age keys to the source state.
 chezmoi/age/**
+# Do NOT add ssh keys to the source state.
+.ssh/**
