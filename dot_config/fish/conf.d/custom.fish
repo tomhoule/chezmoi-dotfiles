@@ -4,6 +4,8 @@ abbr --add -- dc 'docker compose'
 abbr --add -- e '$EDITOR'
 abbr --add -- g git
 abbr --add -- st 'git status'
+abbr --add -- tw 'typst watch'
+abbr --add -- cm 'chezmoi'
 
 # Aliases
 alias cat bat
@@ -18,3 +20,5 @@ end
 
 # No greeting
 set -U fish_greeting
+
+set -U EDITOR hx
