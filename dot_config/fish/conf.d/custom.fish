@@ -21,4 +21,8 @@ end
 # No greeting
 set -U fish_greeting
 
-set -U EDITOR hx
+if type -q helix
+    set -U EDITOR hx
+else if type -q hx
+    set -U EDITOR hx
+end
