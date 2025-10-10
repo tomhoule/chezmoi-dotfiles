@@ -1,0 +1,24 @@
+[user]
+    name = Tom Houlé
+    email = tom@tomhoule.com
+[alias]
+    br = branch
+    ca = commit --amend
+    co = checkout
+    fa = fetch --all
+    pf = push --force
+    pso = push --set-upstream origin
+    rc = rebase --continue
+    s = status -s
+[apply]
+    whitespace = fix
+[core]
+    whitespace = trailing-space,space-before-tab,indent-with-non-tab
+[pull]
+    rebase = true
+[push]
+    autoSetupRemote = true
+[init]
+    defaultBranch = main
+[merge]
+    conflictStyle = "diff3"
