@@ -19,10 +19,16 @@ function tn
 end
 
 # No greeting
-set -U fish_greeting
+set fish_greeting
 
 if type -q helix
-    set -U EDITOR hx
+    set EDITOR helix
 else if type -q hx
-    set -U EDITOR hx
+    set EDITOR hx
+else if type -q nvim
+    set EDITOR nvim
+else if type -q vi
+    set EDITOR vi
+else
+    set nano
 end
