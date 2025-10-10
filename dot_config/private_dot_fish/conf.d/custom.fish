@@ -29,6 +29,4 @@ else if type -q nvim
     set EDITOR nvim
 else if type -q vi
     set EDITOR vi
-else
-    set nano
 end
