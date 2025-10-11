@@ -11,7 +11,7 @@ function sync-gdrive
     set sync_command "rclone sync $source_path $target_path"
 
     echo "Run this? $sync_command"
-    read --local --prompt-str "[y/N]: " confirm
+    read --nchars 1 --local --prompt-str "[y/N]: " confirm
 
     switch $confirm
     case "y" "Y"

@@ -8,7 +8,7 @@ function backup-to-b2
     end
 
     echo "Back up local directories to $bucket_name?"
-    read --prompt-str "[y]es/[n]o/[d]ry run: " --local confirmation
+    read --nchars 1 --prompt-str "[y]es/[n]o/[d]ry run: " --local confirmation
 
     switch $confirmation
     case "y" "Y"
