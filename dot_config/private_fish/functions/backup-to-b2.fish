@@ -24,7 +24,7 @@ function backup-to-b2
     for dirname in Desktop Downloads Documents Music Pictures Templates Public Videos src
         set src "$HOME/$dirname"
         echo "Syncing from $src to backblaze-b2:$bucket_name"
-        rclone sync $src backblaze-b2:$bucket_name/$dirname $dry_run
+        rclone sync $dry_run --progress $src backblaze-b2:$bucket_name/$dirname
     end
 
     echo "🥦 Done syncing."
