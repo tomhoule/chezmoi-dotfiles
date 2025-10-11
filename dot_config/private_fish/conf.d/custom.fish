@@ -1,3 +1,7 @@
+if not status is-interactive
+    exit
+end
+
 # Abbreviations
 abbr --add -- cntr 'cargo nextest run'
 abbr --add -- dc 'docker compose'
@@ -12,20 +16,15 @@ alias cat bat
 alias corgi cargo
 alias ls eza
 
-function tn
-    set --local DIRNAME $(basename $(pwd | tr -d '\n'))
-    tmux new -s $DIRNAME
-end
-
 # No greeting
 set fish_greeting
 
 if type -q helix
-    set EDITOR helix
+    set -gx EDITOR helix
 else if type -q hx
-    set EDITOR hx
+    set -gx EDITOR hx
 else if type -q nvim
-    set EDITOR nvim
+    set -gx EDITOR nvim
 else if type -q vi
-    set EDITOR vi
+    set -gx EDITOR vi
 end
