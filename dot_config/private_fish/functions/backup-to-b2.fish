@@ -2,6 +2,8 @@ function backup-to-b2
     switch $(hostname)
     case "fw13"
         set bucket_name "private-laptop"
+    case "fw16"
+        set bucket_name "other-laptop"
     case '*'
         echo "No backblaze-b2 bucket defined for this machine."
         return 1
