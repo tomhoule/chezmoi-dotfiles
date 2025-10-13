@@ -1,1 +1,1 @@
-fish_add_path -U ~/.local/bin
+fish_add_path ~/.local/bin
