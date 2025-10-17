@@ -1,6 +1,7 @@
 [user]
     name = Tom Houlé
     email = tom@tomhoule.com
+	signingkey = /home/tom/.ssh/id_ed25519.pub
 [alias]
     br = branch
     ca = commit --amend
@@ -22,3 +23,5 @@
     defaultBranch = main
 [merge]
     conflictStyle = "diff3"
+[gpg]
+	format = ssh
