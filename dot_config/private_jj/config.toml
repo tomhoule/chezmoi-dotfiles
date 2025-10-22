@@ -6,6 +6,7 @@ email = "tom@tomhoule.com"
 git_push_bookmark = '"tomhoule-" ++ change_id.short()'
 
 [aliases]
+gf = ["git", "fetch"]
 no = ["new", "main@origin"]
 # Find the closest ancestor with a bookmark pointing at it, and move it to the
 # parent of the working copy.
