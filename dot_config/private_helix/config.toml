@@ -1,1 +1,4 @@
 theme = "boo_berry"
+
+[editor]
+soft-wrap.enable = true
