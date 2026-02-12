@@ -4,3 +4,8 @@
 chezmoi/age/**
 # Do NOT add ssh keys to the source state.
 .ssh/**
+
+# MacOS only files.
+{{ if ne .chezmoi.os "darwin" }}
+.paneru.toml
+{{ end }}
