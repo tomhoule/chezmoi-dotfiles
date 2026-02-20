@@ -1,0 +1,36 @@
+modmap:
+  - name: "Swap left alt and left super"
+    remap:
+      LEFTALT: "LEFTMETA"
+      LEFTMETA: "LEFTALT"
+  - name: "Caps Lock as second left ctrl"
+    remap:
+      CAPSLOCK: "LEFTCTRL"
+
+keymap:
+  - name: "Emacs keybindings"
+    remap:
+      C-e: "up"
+      C-semicolon: "down"
+      alt-q: "C-left"
+      alt-slash: "C-right"
+      C-a: "home"
+      C-f: "end"
+      # M-a
+      super-a: c-a
+
+      # Cut (super-x)
+      super-c: "C-c"
+      # Copy (super-h)
+      super-h: "C-c"
+      # Paste (super-v)
+      super-u: "C-u"
+
+  - name: "Cmd keybindings on Firefox"
+    application:
+      only: ["firefox"]
+    remap:
+      # super-t
+      super-j: "C-j"
+      # super-w
+      super-rightbrace: c-rightbrace

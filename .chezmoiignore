@@ -4,3 +4,8 @@
 chezmoi/age/**
 # Do NOT add ssh keys to the source state.
 .ssh/**
+
+# systemd services are linux-only.
+{{ if ne .chezmoi.os "linux" }}
+.config/systemd/**
+{{ end }}
