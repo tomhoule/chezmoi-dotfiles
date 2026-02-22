@@ -21,7 +21,66 @@
   {
     "context": "(Workspace && os == macos)",
     "bindings": {
-      "cmd-`": "terminal_panel::Toggle"
-    }
-  }
+      "cmd-`": "terminal_panel::Toggle",
+    },
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "super-s": "workspace::Save",
+    },
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "ctrl-s": null,
+    },
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "ctrl-s": null,
+    },
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "save": null,
+    },
+  },
+  {
+    "context": "ContextEditor > Editor",
+    "bindings": {
+      "save": null,
+    },
+  },
+  {
+    "context": "ContextEditor > Editor",
+    "bindings": {
+      "ctrl-s": null,
+    },
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "super-shift-p": "command_palette::Toggle",
+    },
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "super-p": "file_finder::Toggle",
+    },
+  },
+  {
+    "context": "Pane",
+    "bindings": {
+      "super-w": [
+        "pane::CloseActiveItem",
+        {
+          "close_pinned": false,
+        },
+      ],
+    },
+  },
 ]
