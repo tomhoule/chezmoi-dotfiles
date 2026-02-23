@@ -9,67 +9,9 @@
   {
     "context": "Workspace",
     "bindings": {
-      // "shift shift": "file_finder::Toggle"
-    },
-  },
-  {
-    "context": "Editor && vim_mode == insert",
-    "bindings": {
-      // "j k": "vim::NormalBefore"
-    },
-  },
-  {
-    "context": "(Workspace && os == macos)",
-    "bindings": {
-      "cmd-`": "terminal_panel::Toggle",
-    },
-  },
-  {
-    "context": "Workspace",
-    "bindings": {
-      "super-s": "workspace::Save",
-    },
-  },
-  {
-    "context": "Workspace",
-    "bindings": {
-      "ctrl-s": null,
-    },
-  },
-  {
-    "context": "Workspace",
-    "bindings": {
-      "ctrl-s": null,
-    },
-  },
-  {
-    "context": "Workspace",
-    "bindings": {
-      "save": null,
-    },
-  },
-  {
-    "context": "ContextEditor > Editor",
-    "bindings": {
-      "save": null,
-    },
-  },
-  {
-    "context": "ContextEditor > Editor",
-    "bindings": {
-      "ctrl-s": null,
-    },
-  },
-  {
-    "context": "Workspace",
-    "bindings": {
       "super-shift-p": "command_palette::Toggle",
-    },
-  },
-  {
-    "context": "Workspace",
-    "bindings": {
       "super-p": "file_finder::Toggle",
+      "super-s": "workspace::Save",
     },
   },
   {
@@ -81,11 +23,6 @@
           "close_pinned": false,
         },
       ],
-    },
-  },
-  {
-    "context": "Pane",
-    "bindings": {
       "cmd-k o": [
         "pane::CloseOtherItems",
         {
