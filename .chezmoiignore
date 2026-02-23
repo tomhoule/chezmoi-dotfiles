@@ -5,7 +5,12 @@ chezmoi/age/**
 # Do NOT add ssh keys to the source state.
 .ssh/**
 
-# systemd services are linux-only.
+# Linux-only files
 {{ if ne .chezmoi.os "linux" }}
 .config/systemd/**
+{{ end }}
+
+# Darwin-only files
+{{ if ne .chezmoi.os "darwin" }}
+.config/fish/conf.d/orbstack.fish
 {{ end }}
