@@ -4,6 +4,16 @@ email = "tom@tomhoule.com"
 
 [templates]
 git_push_bookmark = '"tomhoule-" ++ change_id.short()'
+draft_commit_description = '''
+concat(
+  builtin_draft_commit_description,
+"\n",
+  indent("JJ: ", "This line and those below will be ignored.\n"),
+  indent("JJ: ", diff.stat(80)),
+  "\n",
+  indent("JJ: ", diff.git()),
+)
+'''
 
 [aliases]
 gf = ["git", "fetch"]
