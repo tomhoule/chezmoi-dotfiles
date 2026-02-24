@@ -1,0 +1,125 @@
+# agent-sandbox: isolated Fedora VM for running AI coding agents (pi, opencode)
+#
+# Intent
+# ------
+# A persistent, long-running Linux sandbox on a MacBook Pro (Apple Silicon)
+# for running terminal-based AI coding agents against the project directories
+# in ~/gh. The VM is completely isolated from the host except for that single
+# shared mount. Zed on the host can connect to the same files over SSH for
+# editing while an agent session runs inside tmux.
+#
+# Architecture
+# ------------
+# Lima provisions a Fedora 43 aarch64 VM using Apple's Virtualization.framework
+# (vmType: vz) — no QEMU involved, native performance. The ~/gh directory is
+# shared via virtiofs (read-write). SSH agent forwarding is enabled so git
+# operations over SSH work without copying keys into the VM.
+#
+# We use Fedora rather than Arch because there is no maintained aarch64 Arch
+# Linux cloud image that boots under Apple's Virtualization.framework. The 2022
+# Arch Linux ARM image from mcginty/arch-boxes-arm uses a startup.nsh EFI boot
+# method that vz doesn't support, and no one has published a working replacement.
+#
+# The VM user is "tom" with home at /home/tom.linux. Lima mounts ~/gh from the
+# host at /Users/tom/gh (mirroring the host absolute path); the user provision
+# script symlinks ~/gh -> /Users/tom/gh so paths feel natural.
+#
+# Installed tools
+# ---------------
+# Shell/editor: fish (login shell), tmux, helix
+# VCS:          git, jj (from aldantanneo/jj-vcs COPR)
+# Node.js:      nodejs, npm (for pi and opencode)
+# Agents:       pi (@mariozechner/pi-coding-agent), opencode (opencode-ai)
+# CLI utils:    bat, fd, ripgrep, jq, zoxide, wget, curl
+#
+# Fish functions on the host (managed by chezmoi)
+# ------------------------------------------------
+# dev          — start the VM if needed, attach to a tmux session inside it
+# dev-zed      — open a project in Zed via SSH remote development
+#
+# Quick reference
+# ---------------
+# Create:  limactl create --name=agent-sandbox ~/.config/lima/agent-sandbox.yaml
+# Start:   limactl start agent-sandbox
+# Shell:   limactl shell agent-sandbox
+# SSH:     ssh -F ~/.lima/agent-sandbox/ssh.config lima-agent-sandbox
+# Stop:    limactl stop agent-sandbox
+# Nuke:    limactl delete agent-sandbox
+
+minimumLimaVersion: "2.0.0"
+
+vmType: "vz"
+mountType: "virtiofs"
+
+images:
+  - location: "https://download.fedoraproject.org/pub/fedora/linux/releases/43/Cloud/aarch64/images/Fedora-Cloud-Base-Generic-43-1.6.aarch64.qcow2"
+    arch: "aarch64"
+    digest: "sha256:66031aea9ec61e6d0d5bba12b9454e80ca94e8a79c913d37ded4c60311705b8b"
+
+cpus: 8
+memory: "24GiB"
+disk: "100GiB"
+
+# Only ~/gh is shared — everything else stays on the host.
+mounts:
+  - location: "~/gh"
+    writable: true
+
+# Forward SSH agent so git-over-ssh works without copying keys.
+ssh:
+  forwardAgent: true
+  # Fedora 43 has a SELinux policy issue with vsock SSH.
+  # https://github.com/lima-vm/lima/issues/4334
+  overVsock: false
+
+provision:
+  # --- root: install packages ---
+  - mode: system
+    script: |
+      #!/bin/bash
+      set -eux -o pipefail
+
+      # ── Phase 1: system update ─────────────────────────────────────
+      dnf upgrade -y --refresh
+
+      # ── Phase 2: core packages ─────────────────────────────────────
+      dnf install -y --skip-unavailable \
+        @development-tools \
+        git tmux fish openssh-server \
+        nodejs npm \
+        bat fd-find ripgrep jq wget curl unzip zoxide
+
+      # ── Phase 3: developer tools (best-effort from repos/COPRs) ────
+      dnf install -y --skip-unavailable helix || true
+
+      # Jujutsu (jj) via aldantanneo COPR (has Fedora 43 aarch64 builds)
+      dnf copr enable -y aldantanneo/jj-vcs || true
+      dnf install -y --skip-unavailable jj-cli || true
+
+      # ── Phase 4: npm-based tools ───────────────────────────────────
+      npm install -g @mariozechner/pi-coding-agent || true
+
+      if ! command -v opencode &>/dev/null; then
+        npm install -g opencode-ai || true
+      fi
+
+      # ── Phase 5: enable sshd (Zed remote dev connects over SSH) ───
+      systemctl enable --now sshd
+
+  # --- user: shell + workspace defaults ---
+  - mode: user
+    script: |
+      #!/bin/bash
+      set -eux -o pipefail
+
+      # Fish as login shell.
+      if [ -x /usr/bin/fish ]; then
+        sudo chsh -s /usr/bin/fish "$(whoami)"
+      fi
+
+      # Lima mounts ~/gh at /Users/tom/gh (mirroring the host path).
+      # Symlink it into the VM home so ~/gh works naturally.
+      if [ -d /Users/tom/gh ] && [ ! -L ~/gh ]; then
+        rm -rf ~/gh
+        ln -s /Users/tom/gh ~/gh
+      fi
