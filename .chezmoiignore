@@ -5,6 +5,10 @@ chezmoi/age/**
 # Do NOT add ssh keys to the source state.
 .ssh/**
 
+# The scripts/ directory is meant for this repo only.
+scripts/**
+/justfile
+
 # Linux-only files
 {{ if ne .chezmoi.os "linux" }}
 .config/systemd/**

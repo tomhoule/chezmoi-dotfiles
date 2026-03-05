@@ -1,0 +1,12 @@
+[Unit]
+Description=Kanata
+After=basic.target
+
+[Service]
+ExecStartPre=+/usr/bin/modprobe uinput
+ExecStart=/usr/bin/kanata -c /etc/kanata/kanata.kbd
+Restart=no
+User=kanata-svc
+
+[Install]
+WantedBy=default.target
