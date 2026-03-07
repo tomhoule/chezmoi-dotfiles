@@ -1,0 +1,11 @@
+spawn-at-startup "cosmic-panel"
+spawn-at-startup "cosmic-notifications"
+
+binds {
+    Mod+Space { spawn "cosmic-launcher"; }
+}
+
+environment {
+    QT_QPA_PLATFORM "wayland"
+    XDG_CURRENT_DESKTOP "cosmic"
+}
