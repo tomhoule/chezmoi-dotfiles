@@ -9,26 +9,13 @@
   {
     "context": "Workspace",
     "bindings": {
-      "super-shift-p": "command_palette::Toggle",
-      "super-p": "file_finder::Toggle",
       "super-s": "workspace::Save",
     },
   },
   {
-    "context": "Pane",
+    "context": "Workspace",
     "bindings": {
-      "super-w": [
-        "pane::CloseActiveItem",
-        {
-          "close_pinned": false,
-        },
-      ],
-      "cmd-k o": [
-        "pane::CloseOtherItems",
-        {
-          "close_pinned": false,
-        },
-      ],
-    },
-  },
+      "ctrl-alt-shift-a": "agent::ToggleFocus"
+    }
+  }
 ]
