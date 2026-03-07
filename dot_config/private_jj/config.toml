@@ -18,11 +18,10 @@ concat(
 [aliases]
 gf = ["git", "fetch"]
 no = ["new", "main@origin"]
-# Find the closest ancestor with a bookmark pointing at it, and move it to the
-# parent of the working copy.
-#
-# From https://gist.github.com/thoughtpolice/8f2fd36ae17cd11b8e7bd93a70e31ad6#file-jjconfig-toml
-tug = ["bookmark", "move", "--from", "heads(::@- & bookmarks())", "--to", "@-"]
+tug = ["bookmark", "advance"]
+
+[revsets]
+bookmark-advance-to = "@-"
 
 [merge-tools.mergiraf]
 program = "mergiraf"
@@ -33,4 +32,4 @@ conflict-marker-style = "git"
 [signing]
 behavior = "own"
 backend = "ssh"
-key = "{{ .chezmoi.homeDir }}/.ssh/id_ed25519.pub"
+key = "~/.ssh/id_ed25519.pub"
