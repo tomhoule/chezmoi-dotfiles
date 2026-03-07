@@ -4,29 +4,30 @@
 
 (defalias bwpo (layer-switch bwpo))
 (defalias qwerty (layer-switch qwerty))
+(defalias meh (multi lctl lsft lalt))
 
 (defsrc
   F1 F2 F3 F4 F5 F6 F7 F8 F9 F10 F11 F12
   q w e r t y u i o p [ ]
   caps a s d f g h j k l ; ' \
-  iso z x c v b n m , . /
+  iso z x c v b n m , . / rsft
   lmet lalt
 )
 
 ;; My own bwpo layer.
 (deflayer bwpo
   _ _ _ _ _ _ _ _ _ _ _ @qwerty
-  b w p o ; \ v d l j z [
-  lctl a u i e , c t s r n m ]
-  _ / y x . k ' q g h f
+       b _ p o ; [ v d l j z _
+  lctl _ u i e , c t s r n m _
+     _ / y x . k ' q g h f @meh
   lalt lmet
 )
 
 ;; Vanilla qwerty
 (deflayer qwerty
   _ _ _ _ _ _ _ _ _ _ _ @bwpo
-  _ _ _ _ _ _ _ _ _ _ _ _
+       _ _ _ _ _ _ _ _ _ _ _ _
   lctl _ _ _ _ _ _ _ _ _ _ _ _
-  _ _ _ _ _ _ _ _ _ _ _
+     _ _ _ _ _ _ _ _ _ _ _ @meh
   lalt lmet
 )
