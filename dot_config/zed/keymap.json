@@ -13,9 +13,8 @@
     },
   },
   {
-    "context": "Workspace",
     "bindings": {
-      "ctrl-alt-shift-a": "agent::ToggleFocus"
+      "ctrl-alt-shift-a": "agent::Toggle"
     }
   }
 ]
