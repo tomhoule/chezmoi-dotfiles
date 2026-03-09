@@ -1,5 +1,7 @@
 (defalias bwpo (layer-switch bwpo))
 (defalias qwerty (layer-switch qwerty))
+(defalias colemak (layer-switch colemak))
+
 (defalias meh (multi lctl lsft lalt))
 
 ;; Leave meta and alt as is on MacOS.
@@ -29,12 +31,22 @@
 
 ;; Vanilla qwerty
 (deflayer qwerty
-  _ _ _ _ _ _ _ _ _ _ _ @bwpo
+  _ _ _ _ _ _ _ _ _ _ _ @colemak
        _ _ _ _ _ _ _ _ _ _ _ _
   lctl _ _ _ _ _ _ _ _ _ _ _ _
      _ _ _ _ _ _ _ _ _ _ _ @meh
   @thumbmod @thumbmod2
 )
+
+;; Colemak
+(deflayer colemak
+  _ _ _ _ _ _ _ _ _ _ _ @bwpo
+       _ _ f p g j l u y ; _ _
+  lctl _ r _ t _ _ n e i o _ _
+    _ _ _ _ _ _ k _ _ _ _ @meh
+  @thumbmod @thumbmod2
+)
+
 
 (deflayer fn
   _ _ _ _ _ _ _ _ _ _ _ _
