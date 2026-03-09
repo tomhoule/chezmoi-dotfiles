@@ -2,6 +2,14 @@
 (defalias qwerty (layer-switch qwerty))
 (defalias meh (multi lctl lsft lalt))
 
+;; Leave meta and alt as is.
+(platform (macos) (defalias thumbmod lmet))
+(platform (macos) (defalias thumbmod2 lalt))
+
+;; Use left alt as ctrl and meta as left alt.
+(platform (linux) (defalias thumbmod lalt))
+(platform (linux) (defalias thumbmod2 lmet))
+
 (defsrc
   F1 F2 F3 F4 F5 F6 F7 F8 F9 F10 F11 F12
   q w e r t y u i o p [ ]
@@ -16,7 +24,7 @@
        b _ p o ; [ v d l j z _
   lctl _ u i e , c t s r n m _
      _ / y x . k ' q g h f @meh
-  lalt lmet
+  @thumbmod @thumbmod2
 )
 
 ;; Vanilla qwerty
@@ -25,5 +33,13 @@
        _ _ _ _ _ _ _ _ _ _ _ _
   lctl _ _ _ _ _ _ _ _ _ _ _ _
      _ _ _ _ _ _ _ _ _ _ _ @meh
-  lalt lmet
+  @thumbmod @thumbmod2
+)
+
+(deflayer fn
+  _ _ _ _ _ _ _ _ _ _ _ _
+       _ _ _ _ _ _ _ _ _ _ _ _
+  _ _ _ _ _ _ _ _ _ _ _ _ _
+     _ _ _ _ _ _ _ _ _ _ _ _
+  _ _
 )
