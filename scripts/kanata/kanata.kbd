@@ -21,9 +21,9 @@
 ;; My own bwpo layer.
 (deflayer bwpo
   _ _ _ _ _ _ _ _ _ _ _ @qwerty
-       b _ p o ; [ v d l j z _
+       b _ p o ; / v d l j _ _
   lctl _ u i e , c t s r n m _
-     _ / y x . k ' q g h f @meh
+     _ _ y x . k ' q g h f @meh
   @thumbmod @thumbmod2
 )
 
