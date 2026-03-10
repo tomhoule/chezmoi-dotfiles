@@ -4,13 +4,17 @@
 
 (defalias meh (multi lctl lsft lalt))
 
+;; --- Remap modifiers ---
+;;
+;; The general idea is to keep the modifiers untouched, and use caps lock as the most common modifier on each platform.
+
 ;; Leave meta and alt as is on MacOS.
-(platform (macos) (defalias thumbmod lmet))
-(platform (macos) (defalias thumbmod2 lalt))
+(platform (macos) (defalias pinkymod lmet))
 
 ;; Use left alt as ctrl and meta as left alt on Linux.
-(platform (linux) (defalias thumbmod lalt))
-(platform (linux) (defalias thumbmod2 lctl))
+(platform (linux) (defalias pinkymod lctl))
+
+;; --- Layer definitions ---
 
 (defsrc
   F1 F2 F3 F4 F5 F6 F7 F8 F9 F10 F11 F12
@@ -24,27 +28,27 @@
 (deflayer bwpo
   _ _ _ _ _ _ _ _ _ _ _ @qwerty
        b _ p o ; / v d l j _ _
-  lctl _ u i e , c t s r n m _
+  @pinkymod _ u i e , c t s r n m _
      _ _ y x . k ' q g h f @meh
-  @thumbmod @thumbmod2
+  _ _
 )
 
 ;; Vanilla qwerty
 (deflayer qwerty
   _ _ _ _ _ _ _ _ _ _ _ @colemak
        _ _ _ _ _ _ _ _ _ _ _ _
-  lctl _ _ _ _ _ _ _ _ _ _ _ _
+  @pinkymod _ _ _ _ _ _ _ _ _ _ _ _
      _ _ _ _ _ _ _ _ _ _ _ @meh
-  @thumbmod @thumbmod2
+  _ _
 )
 
 ;; Colemak
 (deflayer colemak
   _ _ _ _ _ _ _ _ _ _ _ @bwpo
        _ _ f p g j l u y ; _ _
-  lctl _ r _ t _ _ n e i o _ _
+  @pinkymod _ r _ t _ _ n e i o _ _
     _ _ _ _ _ _ k _ _ _ _ @meh
-  @thumbmod @thumbmod2
+  _ _
 )
 
 
