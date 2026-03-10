@@ -20,20 +20,20 @@
   lmet lalt
 )
 
+;; My own bwpo layer.
+(deflayer bwpo
+  _ _ _ _ _ _ _ _ _ _ _ @qwerty
+       b _ p o ; / v d l j z _
+  @pinkymod _ u i e , c t s r n m _
+     _ [ y x . k ' q g h f @meh
+  lmet lalt
+)
+
 ;; Vanilla qwerty
 (deflayer qwerty
   _ _ _ _ _ _ _ _ _ _ _ @bwpo
        _ _ _ _ _ _ _ _ _ _ _ _
   @pinkymod _ _ _ _ _ _ _ _ _ _ _ _
      _ _ _ _ _ _ _ _ _ _ _ @meh
-  lmet lalt
-)
-
-;; My own bwpo layer.
-(deflayer bwpo
-  _ _ _ _ _ _ _ _ _ _ _ @qwerty
-       b _ p o ; / v d l j _ _
-  @pinkymod _ u i e , c t s r n m _
-     _ _ y x . k ' q g h f @meh
   lmet lalt
 )
