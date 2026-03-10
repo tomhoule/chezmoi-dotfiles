@@ -1,6 +1,5 @@
 (defalias bwpo (layer-switch bwpo))
 (defalias qwerty (layer-switch qwerty))
-(defalias colemak (layer-switch colemak))
 
 (defalias meh (multi lctl lsft lalt))
 
@@ -8,10 +7,7 @@
 ;;
 ;; The general idea is to keep the modifiers untouched, and use caps lock as the most common modifier on each platform.
 
-;; Leave meta and alt as is on MacOS.
 (platform (macos) (defalias pinkymod lmet))
-
-;; Use left alt as ctrl and meta as left alt on Linux.
 (platform (linux) (defalias pinkymod lctl))
 
 ;; --- Layer definitions ---
@@ -24,38 +20,20 @@
   lmet lalt
 )
 
+;; Vanilla qwerty
+(deflayer qwerty
+  _ _ _ _ _ _ _ _ _ _ _ @bwpo
+       _ _ _ _ _ _ _ _ _ _ _ _
+  @pinkymod _ _ _ _ _ _ _ _ _ _ _ _
+     _ _ _ _ _ _ _ _ _ _ _ @meh
+  lmet lalt
+)
+
 ;; My own bwpo layer.
 (deflayer bwpo
   _ _ _ _ _ _ _ _ _ _ _ @qwerty
        b _ p o ; / v d l j _ _
   @pinkymod _ u i e , c t s r n m _
      _ _ y x . k ' q g h f @meh
-  _ _
-)
-
-;; Vanilla qwerty
-(deflayer qwerty
-  _ _ _ _ _ _ _ _ _ _ _ @colemak
-       _ _ _ _ _ _ _ _ _ _ _ _
-  @pinkymod _ _ _ _ _ _ _ _ _ _ _ _
-     _ _ _ _ _ _ _ _ _ _ _ @meh
-  _ _
-)
-
-;; Colemak
-(deflayer colemak
-  _ _ _ _ _ _ _ _ _ _ _ @bwpo
-       _ _ f p g j l u y ; _ _
-  @pinkymod _ r _ t _ _ n e i o _ _
-    _ _ _ _ _ _ k _ _ _ _ @meh
-  _ _
-)
-
-
-(deflayer fn
-  _ _ _ _ _ _ _ _ _ _ _ _
-       _ _ _ _ _ _ _ _ _ _ _ _
-  _ _ _ _ _ _ _ _ _ _ _ _ _
-     _ _ _ _ _ _ _ _ _ _ _ _
-  _ _
+  lmet lalt
 )
