@@ -1,3 +1,10 @@
+;; This is my kanata configuration. It serves two purposes:
+;;
+;; 1. Let me use the layout that is the most comfortable for me for letter and some symbol keys, without dealing with xkb layout creation.
+;; 2. Let me map more and better shortcuts.
+;;
+;; Other than the layout of letter and punctuation keys, I aim to keep very close to the keyboard's default behaviour without kanata.
+
 (defalias bwpo (layer-switch bwpo))
 (defalias qwerty (layer-switch qwerty))
 
@@ -7,18 +14,6 @@
 (defalias del (tap-hold-press 10 150 _ @meh))
 (defalias nav (layer-while-held nav))
 
-;; --- Remap modifiers ---
-;;
-;; The general idea is to keep the modifiers untouched, and use caps lock as the most common modifier on each platform.
-
-(platform (macos) (defalias pinkymod lmet))
-(platform (macos) (defalias thumb-mod-left lalt))
-(platform (macos) (defalias thumb-mod-right lmet))
-
-(platform (linux) (defalias pinkymod lctl))
-(platform (linux) (defalias thumb-mod-right lalt))
-(platform (linux) (defalias thumb-mod-left lmet))
-
 ;; --- Layer definitions ---
 
 (defsrc
@@ -26,7 +21,7 @@
   q w e r t y u i o p [ ]
   caps a s d f g h j k l ; ' \
   lsgt z x c v b n m , . / rsft
-  lmet lalt
+  lalt lmet
 )
 
 ;; My own bwpo layer.
@@ -35,19 +30,19 @@
   b _ p o ; / v d l j z _
   @nav _ u i e , c t s r n m _
   _ [ y x . k ' q g h f @meh
-  @thumb-mod-left @thumb-mod-right
+  _ _
 )
 
-;; Vanilla qwerty
+;; Vanilla qwerty.
 (deflayer qwerty
   @esc _ _ _ _ _ _ _ _ _ _ _ _ @del
   _ _ _ _ _ _ _ _ _ _ _ _
   @nav _ _ _ _ _ _ _ _ _ _ _ _
   _ _ _ _ _ _ _ _ _ _ _ @meh
-  @thumb-mod-left @thumb-mod-right
+  _ _
 )
 
-;; Navigation layer
+;; Navigation layer.
 (deflayer nav
   _ _ _ _ _ _ _ _ _ _ _ _ _ _
   @bwpo _ _ _ _ _ home up end _ _ _
