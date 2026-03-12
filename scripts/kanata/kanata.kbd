@@ -5,6 +5,10 @@
 ;;
 ;; Other than the layout of letter and punctuation keys, I aim to keep very close to the keyboard's default behaviour without kanata.
 
+(defcfg
+  process-unmapped-keys yes
+)
+
 (defalias bwpo (layer-switch bwpo))
 (defalias qwerty (layer-switch qwerty))
 
