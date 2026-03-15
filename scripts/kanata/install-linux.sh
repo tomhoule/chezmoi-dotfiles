@@ -27,12 +27,12 @@ sudo udevadm trigger
 
 # 5. Set up the configuration directory and file (idempotent via -p and overwrite)
 sudo mkdir -p /etc/kanata
-sudo cp kanata.kbd /etc/kanata/
+sudo cp scripts/kanata/kanata.kbd /etc/kanata/
 sudo chown kanata-svc:kanata-svc /etc/kanata/kanata.kbd
 sudo chmod 600 /etc/kanata/kanata.kbd
 
 # 6. Install and start the systemd service
-sudo cp kanata.service /etc/systemd/system/
+sudo cp scripts/kanata/kanata.service /etc/systemd/system/
 sudo systemctl daemon-reload
 sudo systemctl enable --now kanata.service
 
