@@ -14,13 +14,13 @@
   },
   {
     "bindings": {
-      "ctrl-alt-shift-a": "agent::Toggle"
+      "ctrl-cmd-shift-a": "agent::Toggle"
     }
   },
   {
-    "context": "Workspace",
+    "context": "(Workspace && os == macos)",
     "bindings": {
-      "ctrl-alt-shift-t": "terminal_panel::Toggle"
+      "ctrl-cmd-shift-t": "terminal_panel::Toggle"
     }
   }
 ]
