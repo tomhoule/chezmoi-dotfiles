@@ -22,5 +22,11 @@
     "bindings": {
       "ctrl-cmd-shift-t": "terminal_panel::Toggle"
     }
+  },
+  {
+    "context": "Workspace && (os == macos)",
+    "bindings": {
+      "ctrl-cmd-shift-m": "multi_workspace::ToggleWorkspaceSidebar"
+    }
   }
 ]
