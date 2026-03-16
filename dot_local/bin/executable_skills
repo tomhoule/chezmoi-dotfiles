@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+# A token-optimized skill discovery tool for LLMs
+
+# Define where the agent should look for skills
+SEARCH_DIRS=("./.agents/skills" "$HOME/.config/agents/skills")
+
+if [ "$1" == "ls" ]; then
+  echo "Available Skills:"
+  for dir in "${SEARCH_DIRS[@]}"; do
+    if [ -d "$dir" ]; then
+      for skill_dir in "$dir"/*; do
+        if [ -f "$skill_dir/SKILL.md" ]; then
+          name=$(basename "$skill_dir")
+
+          # Extract the description from the YAML frontmatter and flatten it to one line
+          desc=$(awk '
+            /^---$/ { count++; if(count==2) exit; next }
+            count==1 && /^description:/ {
+              sub(/^description:[ \t]*>?-?[ \t]*/, ""); print;
+              while(getline && !/^([a-z_-]+:|---$)/) print
+            }' "$skill_dir/SKILL.md" | tr '\n' ' ' | xargs)
+
+          echo "- $name: $desc (Path: $skill_dir/SKILL.md)"
+        fi
+      done
+    fi
+  done
+  exit 0
+fi
+
+echo "Usage: skills ls"
