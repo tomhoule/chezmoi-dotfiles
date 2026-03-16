@@ -1,31 +1,55 @@
-#!/usr/bin/env bash
-# A token-optimized skill discovery tool for LLMs
+#!/usr/bin/env -S uv run --quiet --script
+# /// script
+# dependencies = ["pyyaml"]
+# ///
+"""A token-optimized skill discovery tool for LLMs."""
 
-# Define where the agent should look for skills
-SEARCH_DIRS=("./.agents/skills" "$HOME/.config/agents/skills")
+import os
+import sys
+from pathlib import Path
 
-if [ "$1" == "ls" ]; then
-  echo "Available Skills:"
-  for dir in "${SEARCH_DIRS[@]}"; do
-    if [ -d "$dir" ]; then
-      for skill_dir in "$dir"/*; do
-        if [ -f "$skill_dir/SKILL.md" ]; then
-          name=$(basename "$skill_dir")
+import yaml
 
-          # Extract the description from the YAML frontmatter and flatten it to one line
-          desc=$(awk '
-            /^---$/ { count++; if(count==2) exit; next }
-            count==1 && /^description:/ {
-              sub(/^description:[ \t]*>?-?[ \t]*/, ""); print;
-              while(getline && !/^([a-z_-]+:|---$)/) print
-            }' "$skill_dir/SKILL.md" | tr '\n' ' ' | xargs)
+SEARCH_DIRS = [
+    Path("./.agents/skills"),
+    Path.home() / ".config" / "agents" / "skills",
+]
 
-          echo "- $name: $desc (Path: $skill_dir/SKILL.md)"
-        fi
-      done
-    fi
-  done
-  exit 0
-fi
 
-echo "Usage: skills ls"
+def ls():
+    print("Available Skills:")
+    for search_dir in SEARCH_DIRS:
+        if not search_dir.is_dir():
+            continue
+        for skill_dir in sorted(search_dir.iterdir()):
+            skill_file = skill_dir / "SKILL.md"
+            if not skill_file.is_file():
+                continue
+
+            name = skill_dir.name
+            desc = extract_description(skill_file)
+            print(f"- {name}: {desc} (Path: {skill_file})")
+
+
+def extract_description(path: Path) -> str:
+    text = path.read_text()
+    # Frontmatter is between the first two "---" lines
+    parts = text.split("---", 2)
+    if len(parts) < 3:
+        return ""
+    try:
+        meta = yaml.safe_load(parts[1])
+    except yaml.YAMLError:
+        return ""
+    if not isinstance(meta, dict):
+        return ""
+    desc = meta.get("description", "")
+    # Flatten to a single line
+    return " ".join(desc.split())
+
+
+if __name__ == "__main__":
+    if len(sys.argv) > 1 and sys.argv[1] == "ls":
+        ls()
+    else:
+        print("Usage: skills ls")
