@@ -10,6 +10,7 @@ draft_commit_description = "builtin_draft_commit_description_with_diff"
 gf = ["git", "fetch"]
 no = ["new", "main@origin"]
 tug = ["bookmark", "advance"]
+prune-empty = ["abandon", "-r", "empty() & mutable() & ~merges()"]
 
 [revsets]
 bookmark-advance-to = "@-"
