@@ -9,14 +9,25 @@
   process-unmapped-keys yes
 )
 
-(defalias bwpo (layer-switch bwpo))
-(defalias qwerty (layer-switch qwerty))
+;; 1. Define a virtual key that, while "held" open, activates the mac-mods layer.
+(defvirtualkeys
+  mac-vkey (layer-while-held mac-mods)
+)
 
-(defalias meh (multi lctl lsft lalt))
+(defalias
+  bwpo (layer-switch bwpo)
+  qwerty (layer-switch qwerty)
 
-(defalias esc (tap-hold-press 10 150 _ @meh))
-(defalias del (tap-hold-press 10 150 _ @meh))
-(defalias nav (tap-hold-press 10 150 _ (layer-while-held nav)))
+  ;; Toggle the virtual key statefully
+  tog-mac (on-press toggle-vkey mac-vkey)
+
+  ;; Tap-dances for the lsgt key (200ms timeout for the double tap)
+  ;; On bwpo layer: tap 1 = switch to qwerty, tap 2 = toggle mac keys
+  td-qwe (tap-dance 200 (@qwerty @tog-mac))
+
+  ;; On qwerty layer: tap 1 = switch to bwpo, tap 2 = toggle mac keys
+  td-bwp (tap-dance 200 (@bwpo @tog-mac))
+)
 
 ;; --- Layer definitions ---
 
@@ -30,19 +41,19 @@
 
 ;; My own bwpo layer.
 (deflayer bwpo
-  @esc _ _ _ _ _ _ _ _ _ _ _ _ @del
-  @nav b _ p o ; / v d l j z _
+  _ _ _ _ _ _ _ _ _ _ _ _ _ _
+  _ b _ p o ; / v d l j z _
   lctl _ u i e , c t s r n m _
-  _ [ y x . k ' q g h f @meh
+  @td-qwe [ y x . k ' q g h f _
   _ _
 )
 
 ;; Vanilla qwerty.
 (deflayer qwerty
-  @esc _ _ _ _ _ _ _ _ _ _ _ _ @del
-  @nav _ _ _ _ _ _ _ _ _ _ _ _
+  _ _ _ _ _ _ _ _ _ _ _ _ _ _
+  _ _ _ _ _ _ _ _ _ _ _ _ _
   lctl _ _ _ _ _ _ _ _ _ _ _ _
-  _ _ _ _ _ _ _ _ _ _ _ @meh
+  @td-bwp _ _ _ _ _ _ _ _ _ _ _
   _ _
 )
 
@@ -53,4 +64,12 @@
   _ _ _ _ _ _ _ left down right _ _ _
   _ _ _ _ _ _ _ @qwerty _ _ _ _
   _ _
+)
+
+;; --- Overlay Layer ---
+;; This layer floats on top. We only map the modifiers we want to swap.
+;; All other keys automatically fall through to the active base layer!
+(deflayermap (mac-mods)
+  lalt lmet
+  lmet lalt
 )
