@@ -11,7 +11,11 @@ The top-level commands are `pr`, `issue`, `run`, `release`, `search`, `repo`, an
 
 ## Avoiding interactive prompts
 
-Always pass `--title` and `--body` when creating PRs or issues. Use `--no-pager` or pipe through `cat` when output might be long, since interactive paging blocks automated flows.
+Always pass `--title` and `--body` when creating PRs or issues. Use `--no-pager` or pipe through `cat` when output might be long, since interactive paging blocks automated flows. When invoking `gh` through the Zed terminal tool, set `timeout_ms` — network hiccups or an unexpected auth prompt will otherwise hang the call.
+
+## Creating PRs
+
+Beyond `--title` / `--body`, the flags worth knowing on `gh pr create` are `--fill` (lift title and body from the commits), `--draft`, `--base <branch>` for non-default targets, and `--reviewer <handle>` (repeatable). `gh pr checks` gives CI status for the current branch's PR without going through `gh run list`.
 
 ## Structured output
 
