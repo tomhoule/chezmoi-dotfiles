@@ -1,6 +1,4 @@
-spawn-at-startup "cosmic-panel"
-spawn-at-startup "cosmic-notifications"
-spawn-at-startup "swaybg" "-m" "fill" "-i" "/home/tom/Pictures/wallpapers/leopard.jpg"
+spawn-at-startup "noctalia"
 
 environment {
     QT_QPA_PLATFORM "wayland"
@@ -24,6 +22,7 @@ input {
             // For example:
             layout "us"
             variant "altgr-intl"
+            options "ctrl:nocaps"
             // options "grp:win_space_toggle,compose:ralt,ctrl:nocaps"
 
             // If this section is empty, niri will fetch xkb settings
@@ -304,7 +303,7 @@ animations {
     // off
 
     // Slow down all animations by this factor. Values below 1 speed them up instead.
-    slowdown 0.8
+    slowdown 1
 }
 
 // Open the Firefox picture-in-picture player as floating by default.
@@ -352,7 +351,7 @@ binds {
 
     // Suggested binds for running programs: terminal, app launcher, screen locker.
     Mod+T hotkey-overlay-title="Open a Terminal: ghostty" { spawn "ghostty"; }
-    Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
+    Super+Alt+L hotkey-overlay-title="Lock the Screen" { spawn "noctalia" "msg" "session" "lock"; }
 
     // Use spawn-sh to run a shell command. Do this if you need pipes, multiple commands, etc.
     // Note: the entire command goes as a single argument. It's passed verbatim to `sh -c`.
@@ -617,5 +616,5 @@ binds {
     // moving the mouse or pressing any other key.
     Mod+Shift+P { power-off-monitors; }
 
-    Mod+Space { spawn "cosmic-launcher"; }
+    Mod+Space { spawn "noctalia" "msg" "panel-open" "launcher"; }
 }
