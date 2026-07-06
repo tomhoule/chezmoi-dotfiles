@@ -698,6 +698,7 @@ do
     -- gopls = {},
     -- pyright = {},
     rust_analyzer = {},
+    zls = {},
 
     --
     -- Some languages (like typescript) have entire language plugins that can be useful:
