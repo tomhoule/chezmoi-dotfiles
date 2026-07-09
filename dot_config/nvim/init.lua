@@ -659,6 +659,7 @@ do
       -- Rename the variable under your cursor.
       --  Most Language Servers support renaming across files, etc.
       map("grn", vim.lsp.buf.rename, "[R]e[n]ame")
+      map("<F2>", vim.lsp.buf.rename, "Rename")
 
       -- Execute a code action, usually your cursor needs to be on top of an error
       -- or a suggestion from your LSP for this to activate.
@@ -770,6 +771,7 @@ do
   }
 
   vim.pack.add({
+    gh("hedyhli/outline.nvim"),
     gh("neovim/nvim-lspconfig"),
     gh("mason-org/mason.nvim"),
     gh("mason-org/mason-lspconfig.nvim"),
@@ -778,6 +780,11 @@ do
 
   -- Automatically install LSPs and related tools to stdpath for Neovim
   require("mason").setup({})
+
+  -- Outline (https://github.com/hedyhli/outline.nvim)
+  vim.keymap.set("n", "<leader>o", "<cmd>Outline<CR>", { desc = "Toggle Outline" })
+
+  require("outline").setup({})
 
   -- Ensure the servers and tools above are installed
   --
@@ -1012,7 +1019,7 @@ do
   -- require 'kickstart.plugins.lint'
   -- require 'kickstart.plugins.autopairs'
   require("kickstart.plugins.neo-tree")
-  -- require 'kickstart.plugins.gitsigns' -- adds gitsigns recommended keymaps
+  require("kickstart.plugins.gitsigns") -- adds gitsigns recommended keymaps
 
   -- NOTE: You can add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --
