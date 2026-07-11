@@ -606,7 +606,7 @@ end
 
 -- ============================================================
 -- SECTION 6: LSP
--- LSP keymaps, server configuration, Mason tools installations
+-- LSP keymaps, server configuration
 -- ============================================================
 do
   -- [[ LSP Configuration ]]
@@ -630,7 +630,7 @@ do
   --  - and more!
   --
   -- Thus, Language Servers are external tools that must be installed separately from
-  -- Neovim. This is where `mason` and related plugins come into play.
+  -- Neovim.
   --
   -- If you're wondering about lsp vs treesitter, you can check out the wonderfully
   -- and elegantly composed help section, `:help lsp-vs-treesitter`
@@ -773,37 +773,12 @@ do
   vim.pack.add({
     gh("hedyhli/outline.nvim"),
     gh("neovim/nvim-lspconfig"),
-    gh("mason-org/mason.nvim"),
-    gh("mason-org/mason-lspconfig.nvim"),
-    gh("WhoIsSethDaniel/mason-tool-installer.nvim"),
   })
-
-  -- Automatically install LSPs and related tools to stdpath for Neovim
-  require("mason").setup({})
 
   -- Outline (https://github.com/hedyhli/outline.nvim)
   vim.keymap.set("n", "<leader>o", "<cmd>Outline<CR>", { desc = "Toggle Outline" })
 
   require("outline").setup({})
-
-  -- Ensure the servers and tools above are installed
-  --
-  -- To check the current status of installed tools and/or manually install
-  -- other tools, you can run
-  --    :Mason
-  --
-  -- You can press `g?` for help in this menu.
-  local ensure_installed = vim.tbl_keys(servers or {})
-  vim.list_extend(ensure_installed, {
-    -- You can add other tools here that you want Mason to install
-  })
-
-  require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
-
-  for name, server in pairs(servers) do
-    vim.lsp.config(name, server)
-    vim.lsp.enable(name)
-  end
 end
 
 -- ============================================================
