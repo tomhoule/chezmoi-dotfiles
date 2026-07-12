@@ -720,6 +720,7 @@ do
     -- pyright = {},
     rust_analyzer = {},
     zls = {},
+    tinymist = {},
 
     --
     -- Some languages (like typescript) have entire language plugins that can be useful:
