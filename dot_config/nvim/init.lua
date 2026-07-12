@@ -779,6 +779,12 @@ do
   vim.keymap.set("n", "<leader>o", "<cmd>Outline<CR>", { desc = "Toggle Outline" })
 
   require("outline").setup({})
+
+  -- Ensure the servers and tools above are installed
+  for name, server in pairs(servers) do
+    vim.lsp.config(name, server)
+    vim.lsp.enable(name)
+  end
 end
 
 -- ============================================================
