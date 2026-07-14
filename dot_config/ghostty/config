@@ -47,6 +47,7 @@
 # # which is explained in the docs for that config option.
 # # Just for example:
 # resize-overlay-duration = 4s 200ms
+
 font-size = 11
-# theme = Catppuccin Mocha
+font-family = Ubuntu Mono
 theme = Flexoki Light
