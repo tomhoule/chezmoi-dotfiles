@@ -800,6 +800,7 @@ do
         -- lua = true,
         -- python = true,
         rust = true,
+        zig = true,
       }
       if enabled_filetypes[vim.bo[bufnr].filetype] then
         return { timeout_ms = 500 }
@@ -812,6 +813,7 @@ do
     },
     -- You can also specify external formatters in here.
     formatters_by_ft = {
+      zig = { "zigfmt" },
       -- rust = { 'rustfmt' },
       -- Conform can also run multiple formatters sequentially
       -- python = { "isort", "black" },
