@@ -6,3 +6,6 @@ if test -d "$HOME/.bun"; and not set -q BUN_INSTALL
     set --export BUN_INSTALL "$HOME/.bun"
     fish_add_path $BUN_INSTALL/bin
 end
+
+set -gx PNPM_HOME ~/.cache/pnpm-home
+fish_add_path $PNPM_HOME
