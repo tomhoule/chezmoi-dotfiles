@@ -769,14 +769,15 @@ do
   }
 
   vim.pack.add({
-    gh("hedyhli/outline.nvim"),
+    gh("stevearc/aerial.nvim"),
     gh("neovim/nvim-lspconfig"),
   })
 
-  -- Outline (https://github.com/hedyhli/outline.nvim)
-  vim.keymap.set("n", "<leader>o", "<cmd>Outline<CR>", { desc = "Toggle Outline" })
+  vim.keymap.set("n", "<leader>o", "<cmd>AerialToggle<CR>", { desc = "Toggle outline" })
 
-  require("outline").setup({})
+  require("aerial").setup({
+    nerd_font = true,
+  })
 
   -- Ensure the servers and tools above are installed
   for name, server in pairs(servers) do
@@ -998,7 +999,7 @@ do
   require("kickstart.plugins.debug")
   require 'kickstart.plugins.indent_line'
   -- require 'kickstart.plugins.lint'
-  require 'kickstart.plugins.autopairs'
+  -- require 'kickstart.plugins.autopairs'
   require("kickstart.plugins.neo-tree")
   require("kickstart.plugins.gitsigns") -- adds gitsigns recommended keymaps
 
