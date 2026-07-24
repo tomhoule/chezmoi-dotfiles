@@ -1,0 +1,8 @@
+[general]
+import = [
+  "./kanagawa_wave.toml"
+]
+
+[font]
+normal = { family = "Ubuntu Mono", style = "Regular" }
+
