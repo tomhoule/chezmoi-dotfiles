@@ -1,8 +1,7 @@
 [general]
 import = [
-  "./kanagawa_wave.toml"
+  "modus_operandi.toml"
 ]
 
 [font]
-normal = { family = "Ubuntu Mono", style = "Regular" }
-
+normal = { family = "Iosevka Term Curly", style = "Regular" }
