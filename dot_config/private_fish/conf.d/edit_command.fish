@@ -5,7 +5,7 @@
 # swallow the Option key or map it to special characters.
 #
 # Ctrl-X Ctrl-E is the classic bash/readline equivalent and works everywhere.
-# It opens the current command line in $EDITOR (set in custom.fish); when you
+# It opens the current command line in $EDITOR; when you
 # save and quit, the edited text replaces the command line.
 
 if status is-interactive
