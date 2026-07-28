@@ -25,3 +25,7 @@ conflict-marker-style = "git"
 behavior = "own"
 backend = "ssh"
 key = "~/.ssh/id_ed25519.pub"
+
+[ui]
+pager = "delta"
+diff-formatter = ":git"
