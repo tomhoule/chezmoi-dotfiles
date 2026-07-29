@@ -52,3 +52,6 @@ font-size = 13
 font-family = Iosevka Term
 font-family = Sarasa Term SC # CJK font
 theme = dark:Catppuccin Mocha,light:Flexoki Light
+
+# Do not ask for confirmation before closing a window.
+confirm-close-surface = false
