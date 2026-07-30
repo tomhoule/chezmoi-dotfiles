@@ -18,4 +18,5 @@ scripts/**
 {{ if ne .chezmoi.os "darwin" }}
 .config/fish/conf.d/orbstack.fish
 .config/lima
+.config/aerospace
 {{ end }}
