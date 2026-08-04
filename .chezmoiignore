@@ -7,7 +7,7 @@ chezmoi/age/**
 
 # The scripts/ directory is meant for this repo only.
 scripts/**
-/justfile
+justfile
 
 # Linux-only files
 {{ if ne .chezmoi.os "linux" }}
