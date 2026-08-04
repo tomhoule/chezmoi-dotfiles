@@ -14,17 +14,30 @@
   {
     "context": "VimControl && !menu",
     "bindings": {
-      "space f s": "file_finder::Toggle",
-      "space f g": "workspace::NewSearch",
-      "space e": "project_panel::ToggleFocus",
-      "space a": "agent::ToggleFocus",
-      "space b d": "pane::CloseActiveItem",
+      "[ d": "editor::GoToPreviousDiagnostic",
+      "] d": "editor::GoToDiagnostic",
       "g r a": "editor::ToggleCodeActions",
+      "space b d": "pane::CloseActiveItem",
+      "space d a": "agent::ToggleFocus",
       "space d d": "diagnostics::Deploy",
+      "space e": "project_panel::ToggleFocus",
+      "space f g": "workspace::NewSearch",
+      "space f f": "file_finder::Toggle",
+      "space l a": "editor::ToggleCodeActions",
       "space l f": "editor::Format",
+      "space t a": "agent::ToggleFocus",
       "space t h": "workspace::ToggleLeftDock",
+      "space t j": "workspace::ToggleBottomDock",
       "space t l": "workspace::ToggleRightDock",
-      "space t m": "multi_workspace::ToggleWorkspaceSidebar"
+      "space t m": "multi_workspace::ToggleWorkspaceSidebar",
+      "space t p": "multi_workspace::ToggleWorkspaceSidebar",
+      "space t t": "terminal_panel::Toggle",
+    },
+  },
+  {
+    "context": "vim_mode == insert || vim_mode == visual",
+    "bindings": {
+      "ctrl-d": "editor::SelectNext",
     },
   },
 ]
