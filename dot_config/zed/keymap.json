@@ -40,4 +40,39 @@
       "ctrl-d": "editor::SelectNext",
     },
   },
+  {
+    "bindings": {
+      "ctrl-t e": "project_panel::ToggleFocus"
+    }
+  },
+  {
+    "bindings": {
+      "ctrl-t l": "workspace::ToggleRightDock"
+    }
+  },
+  {
+    "bindings": {
+      "ctrl-t h": "workspace::ToggleLeftDock"
+    }
+  },
+  {
+    "bindings": {
+      "ctrl-t t": "terminal_panel::Toggle"
+    }
+  },
+  {
+    "bindings": {
+      "ctrl-t a": "agent::ToggleFocus"
+    }
+  },
+  {
+    "bindings": {
+      "ctrl-t p": "multi_workspace::ToggleWorkspaceSidebar"
+    }
+  },
+  {
+    "bindings": {
+      "ctrl-t j": "workspace::ToggleBottomDock"
+    }
+  }
 ]
