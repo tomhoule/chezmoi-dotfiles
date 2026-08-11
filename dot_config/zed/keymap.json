@@ -14,9 +14,7 @@
   {
     "context": "VimControl && !menu",
     "bindings": {
-      "[ d": "editor::GoToPreviousDiagnostic",
-      "] d": "editor::GoToDiagnostic",
-      "g r a": "editor::ToggleCodeActions",
+      "g w": "vim::HelixJumpToWord",
       "space b d": "pane::CloseActiveItem",
       "space d a": "agent::ToggleFocus",
       "space d d": "diagnostics::Deploy",
