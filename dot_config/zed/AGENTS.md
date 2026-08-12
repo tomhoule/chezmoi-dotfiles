@@ -15,6 +15,7 @@ When writing a git or jj commit message, or a PR description, follow the followi
 - When a change is incremental, say so. Signal what comes next ("first batch", "first step").
 - Explain not just what data or behavior a change adds, but what questions it answers or what it enables.
 - When there's a meaningful tradeoff, name it. One sentence is enough most of the time.
+- Unless we went through an involved manual testing round, do not mention what we wrote tests for, and don't write a "Testing" section by default in PR descriptions and commit messages.
 
 ## VCS
 
