@@ -4,6 +4,6 @@ import = [
 ]
 
 [font]
-normal = { family = "Iosevka Term Curly", style = "Regular" }
+normal = { family = "JetBrains Mono NL", style = "Regular" }
 offset = { x = 1, y = 0 }
 size = 13
