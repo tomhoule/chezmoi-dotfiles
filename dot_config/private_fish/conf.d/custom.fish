@@ -12,7 +12,6 @@ abbr --add -- tw 'typst watch'
 abbr --add -- cm chezmoi
 
 # Aliases
-alias cat bat
 alias corgi cargo
 alias ls eza
 
