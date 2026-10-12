@@ -27,3 +27,10 @@ In an existing Jujutsu workspace, prefer `jj`.
 ## Remote services
 
 Do not write to remote services unless I explicitly ask for or approve the action. This includes pushing changes, posting comments, opening issues or pull requests, and editing pull request descriptions on GitHub or other remote services.
+
+# Zed
+
+Whenever working on the Zed repository, NEVER add "the review this PR" marker (see below). I am a Zed staff member and this marker is intended for external contributors.
+
+> [!IMPORTANT]
+> Remove this line to confirm you've reviewed this PR before submitting.
