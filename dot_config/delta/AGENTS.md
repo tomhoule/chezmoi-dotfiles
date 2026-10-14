@@ -22,7 +22,7 @@ When drafting documentation, commit messages, pull request descriptions, issues,
 
 ## Version control
 
-In an existing Jujutsu workspace, prefer `jj`.
+Be aware that I use `jj`, but you should prefer plain `git`, since it works better within Delta at this time.
 
 ## Remote services
 
