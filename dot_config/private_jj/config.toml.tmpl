@@ -22,10 +22,13 @@ merge-conflict-exit-codes = [1]
 conflict-marker-style = "git"
 
 [signing]
-behavior = "own"
+behavior = "drop"
 backend = "ssh"
 key = "~/.ssh/main.pub"
 
 [signing.backends.ssh]
 program = "{{ .chezmoi.homeDir }}/.local/bin/ssh-keygen-tpm"
 allowed-signers = "~/.ssh/allowed_signers"
+
+[git]
+sign-on-push = true
