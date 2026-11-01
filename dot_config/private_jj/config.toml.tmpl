@@ -24,7 +24,7 @@ conflict-marker-style = "git"
 [signing]
 behavior = "own"
 backend = "ssh"
-key = "~/.ssh/id_ecdsa.pub"
+key = "~/.ssh/main.pub"
 
 [signing.backends.ssh]
 program = "{{ .chezmoi.homeDir }}/.local/bin/ssh-keygen-tpm"

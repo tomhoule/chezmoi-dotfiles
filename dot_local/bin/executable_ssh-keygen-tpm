@@ -1,6 +1,13 @@
 #!/bin/sh
-if command -v ssh-tpm-agent >/dev/null 2>&1; then
-    SSH_AUTH_SOCK="$(ssh-tpm-agent --print-socket)" || exit 1
-    export SSH_AUTH_SOCK
-fi
-exec ssh-keygen "$@"
+case "$(uname -s)" in
+    Darwin)
+        export SSH_AUTH_SOCK="$HOME/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh"
+        ;;
+    Linux)
+        if command -v ssh-tpm-agent >/dev/null 2>&1; then
+            SSH_AUTH_SOCK="$(ssh-tpm-agent --print-socket)" || exit 1
+            export SSH_AUTH_SOCK
+        fi
+        ;;
+esac
+exec /usr/bin/ssh-keygen "$@"
