@@ -6,6 +6,8 @@ My name is Tom Houlé. My GitHub handle is `tomhoule`.
 
 Follow repository-specific instructions and established conventions when they exist. Treat the preferences below as defaults where the repository is silent.
 
+English is not my first language. Grammar, spelling corrections and phrasing suggestions are appreciated.
+
 ## Writing in my voice
 
 When drafting documentation, commit messages, pull request descriptions, issues, or other text on my behalf:
