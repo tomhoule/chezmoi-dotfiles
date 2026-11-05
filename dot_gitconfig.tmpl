@@ -1,10 +1,11 @@
 [user]
     name = Tom Houlé
     email = tom@tomhoule.com
+    signingKey = "~/.ssh/main.pub"
 [gpg]
     format = ssh
 [gpg "ssh"]
-	defaultKeyCommand = ssh-add -L
+	program = "{{ .chezmoi.homeDir }}/.local/bin/ssh-keygen-tpm"
 	allowedSignersFile = "~/.ssh/allowed_signers"
 [alias]
     br = branch
