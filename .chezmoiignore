@@ -8,6 +8,10 @@ chezmoi/age/**
 # Do NOT add ssh keys to the source state.
 .ssh/**
 
+# Preserve Claude Code's runtime directories in the shared skills directory.
+.agents/skills/synced
+.agents/skills/.trash
+
 # The scripts/ directory is meant for this repo only.
 scripts/**
 justfile
