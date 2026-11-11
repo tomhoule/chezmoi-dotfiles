@@ -1,0 +1,26 @@
+IMAPAccount mailbox
+Host imap.mailbox.org
+Port 993
+User tom@tomhoule.com
+PassCmd "oo7-cli lookup --secret-only service=backup-mail credential=imap-password"
+TLSType IMAPS
+
+IMAPStore mailbox-remote
+Account mailbox
+
+MaildirStore mailbox-local
+Path ~/Mail/tom@tomhoule.com/
+Inbox ~/Mail/tom@tomhoule.com/INBOX
+SubFolders Verbatim
+
+Channel mailbox-backup
+Far :mailbox-remote:
+Near :mailbox-local:
+Patterns * INBOX
+# Retry skipped/failed messages, without propagating flags or deletions.
+Sync Pull New Old
+Create Near
+Remove None
+Expunge None
+CopyArrivalDate yes
+SyncState *

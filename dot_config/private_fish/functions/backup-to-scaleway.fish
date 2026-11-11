@@ -130,7 +130,7 @@ function backup-to-scaleway --description 'Set up, initialize, or run Scaleway b
     end
 
     set -l sources
-    for dirname in Desktop Downloads Documents Music Pictures Templates Public Videos src
+    for dirname in Desktop Downloads Documents Mail Music Pictures Templates Public Videos src
         set -a sources "$HOME/$dirname"
     end
 
