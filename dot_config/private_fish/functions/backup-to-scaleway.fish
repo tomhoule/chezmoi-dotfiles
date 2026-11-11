@@ -1,6 +1,6 @@
 function backup-to-scaleway --description 'Set up, initialize, or run Scaleway backups with restic' --argument-names action
-    set -l usage 'Usage: backup-to-scaleway [setup|init|backup] (default: backup)'
-    if test (count $argv) -gt 1
+    set -l usage 'Usage: backup-to-scaleway [setup|init|backup] or backup-to-scaleway restic <command> [args...] (default: backup)'
+    if test "$action" != restic; and test (count $argv) -gt 1
         echo "$usage" >&2
         return 2
     end
@@ -9,6 +9,11 @@ function backup-to-scaleway --description 'Set up, initialize, or run Scaleway b
     end
     switch $action
         case setup init backup
+        case restic
+            if test (count $argv) -lt 2
+                echo "$usage" >&2
+                return 2
+            end
         case -h --help
             echo "$usage"
             return 0
@@ -116,6 +121,11 @@ function backup-to-scaleway --description 'Set up, initialize, or run Scaleway b
     set -lu RESTIC_PASSWORD_COMMAND
     set -l password_command (string join ' ' -- (string escape -- oo7-cli lookup --secret-only $attributes credential=$credentials[3]))
     set -l options --repo $repository --password-command "$password_command" -o s3.storage-class=STANDARD -o s3.region=$region
+
+    if test "$action" = restic
+        command restic $options $argv[2..-1]
+        return $status
+    end
 
     if test "$action" = init
         command restic $options init
